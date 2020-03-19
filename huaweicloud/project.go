@@ -2,7 +2,7 @@ package huaweicloud
 
 import (
 	"encoding/json"
-	"log"
+	"github.com/golang/glog"
 )
 
 type DescribeProjectsResponse struct {
@@ -21,7 +21,7 @@ func (h *HWClient) GetProjectID() string {
 	} else {
 		projectID, err := h.DescribeProjects(h.Region)
 		if err != nil {
-			log.Fatal("[fatal] Failed to get project id")
+			glog.Error("Failed to get project id: ", err)
 		}
 		h.projectID = projectID
 	}
@@ -42,7 +42,6 @@ func (h *HWClient) DescribeProjects(region string) (string, error) {
 	h.global = global
 	h.Service = service
 	if err != nil {
-		log.Println("[warn] Failed to get project")
 		return "", err
 	}
 

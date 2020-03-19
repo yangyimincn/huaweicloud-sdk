@@ -2,10 +2,10 @@ package huaweicloud
 
 import (
 	"bytes"
+	"github.com/golang/glog"
 	"github.com/yangyimincn/huaweicloud-sdk/huaweicloud/auth"
 	hwerror "github.com/yangyimincn/huaweicloud-sdk/huaweicloud/error"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"time"
 )
@@ -56,7 +56,7 @@ func (h *HWClient) doReq(req *http.Request) ([]byte, error) {
 	if res.StatusCode > 300 {
 		bodyBytes, err := ioutil.ReadAll(res.Body)
 		if err != nil {
-			log.Printf("[Error] Failed to read response body")
+			glog.Error("Failed to read response body: ", err)
 			return nil, err
 		}
 		bodyStr := string(bodyBytes)
@@ -80,7 +80,7 @@ func (h *HWClient) generateAuthHeader(req *http.Request) (*http.Request, error) 
 	s := auth.Newsigner(h.Service, h.Region, h.AccessKey, h.SecretKey)
 	authkey, err := s.GetAuthorization(req)
 	if err != nil {
-		log.Fatal("get authorization error", err)
+		glog.Fatal("Get authorization error: ", err)
 	}
 	req.Header.Set(auth.HeaderAuthorization, authkey)
 	return req, err
