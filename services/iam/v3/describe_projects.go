@@ -15,7 +15,7 @@ type Project struct {
 	Name    string `json:"name"`
 }
 
-func (c *v3.IAMClient) DescribeProjects(region string) (string, error) {
+func (c *IAMClient) DescribeProjects(region string) (string, error) {
 	query := map[string]string{
 		"name": region,
 	}

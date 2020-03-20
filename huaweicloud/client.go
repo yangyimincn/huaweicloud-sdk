@@ -16,7 +16,7 @@ type HWClient struct {
 	Region     string
 	Service    string
 	projectID  string
-	global     bool
+	Global     bool
 
 	httpClient http.Client
 	config *Config
@@ -25,7 +25,7 @@ type HWClient struct {
 func (h *HWClient) generateHost() string {
 	var url string
 	// 全局服务endpoint不需要加region
-	if h.global {
+	if h.Global {
 		url = "https://" + h.Service + "." + h.config.BaseHost
 	} else {
 		url = "https://" + h.Service + "." + h.Region + "." + h.config.BaseHost

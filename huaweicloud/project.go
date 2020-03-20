@@ -33,13 +33,13 @@ func (h *HWClient) DescribeProjects(region string) (string, error) {
 		"name": region,
 	}
 
-	var global bool = h.global
+	var global bool = h.Global
 	var service string = h.Service
-	h.global = true
+	h.Global = true
 	h.Service = "iam"
 
 	res, err := h.DoRequest("GET", "/v3/projects", query, nil)
-	h.global = global
+	h.Global = global
 	h.Service = service
 	if err != nil {
 		return "", err
