@@ -108,13 +108,13 @@ func (h *HWClient) newRequest(method, uri string, query map[string]string, body 
 	return req, nil
 }
 
-func NewClient(accessKey, secretKey, region, sevice string) *HWClient {
+func NewClient(accessKey, secretKey, region, service string) *HWClient {
 	cfg := NewConfig()
 	client := HWClient{
 		AccessKey:  accessKey,
 		SecretKey:  secretKey,
 		Region:     region,
-		Service:    sevice,
+		Service:    service,
 		httpClient: http.Client{},
 		config:     cfg,
 	}

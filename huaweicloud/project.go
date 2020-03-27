@@ -2,6 +2,7 @@ package huaweicloud
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/golang/glog"
 )
 
@@ -21,7 +22,7 @@ func (h *HWClient) GetProjectID() string {
 	} else {
 		projectID, err := h.DescribeProjects(h.Region)
 		if err != nil {
-			glog.Error("Failed to get project id: ", err)
+			glog.Fatal("Failed to get project id: ", err)
 		}
 		h.projectID = projectID
 	}
@@ -51,6 +52,12 @@ func (h *HWClient) DescribeProjects(region string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+
+	// if project no exists
+	if len(response.Projects) == 0 {
+		return "", fmt.Errorf("Failed to get project_id")
+	}
+
 	return response.Projects[0].ID, nil
 }
 
