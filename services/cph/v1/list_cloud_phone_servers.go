@@ -34,7 +34,7 @@ type PhoneServer struct {
 }
 
 func (c *CPHClient) ListCloudPhoneServers() (*ListCloudPhoneServersResponse, error) {
-	uri := fmt.Sprintf("/v1/%s/publicips", c.GetProjectID())
+	uri := fmt.Sprintf("/v1/%s/cloud-phone/servers", c.GetProjectID())
 
 	res := ListCloudPhoneServersResponse{}
 
