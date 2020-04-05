@@ -22,7 +22,7 @@ type ListJobsResponse struct {
 }
 
 func (c *CPHClient) ListJobs(requestID string) (*ListJobsResponse, error)  {
-	uri := fmt.Sprintf("/v1/%s/cloud-phone/phone-images", c.GetProjectID())
+	uri := fmt.Sprintf("/v1/%s/cloud-phone/jobs", c.GetProjectID())
 
 	res := ListJobsResponse{}
 
