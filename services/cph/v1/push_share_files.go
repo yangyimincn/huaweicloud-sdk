@@ -8,8 +8,10 @@ import (
 type PushShareFilesResponse struct {
 	RequestID string `json:"request_id"`
 	Jobs      []struct {
-		ServerID string `json:"server_id"`
-		JobID    string `json:"job_id"`
+		ServerID  string `json:"server_id"`
+		JobID     string `json:"job_id,omitempty"`
+		ErrorCode string `json:"error_code,omitempty"`
+		ErrorMsg  string `json:"error_msg,omitempty"`
 	} `json:"jobs"`
 }
 
@@ -20,7 +22,7 @@ func (c *CPHClient) PushShareFiles(bucketName, objectPath string, serverIDS []st
 	body := map[string]interface{}{
 		"bucket_name": bucketName,
 		"object_path": objectPath,
-		"server_ids": serverIDS,
+		"server_ids":  serverIDS,
 	}
 
 	bodyB, err := json.Marshal(body)

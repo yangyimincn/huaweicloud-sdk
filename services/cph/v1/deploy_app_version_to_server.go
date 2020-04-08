@@ -10,7 +10,9 @@ type DeployAppVersionToServerResponse struct {
 	Jobs      []struct {
 		JobType      int    `json:"job_type"`
 		ServerID     string `json:"server_id"`
-		JobID        string `json:"job_id"`
+		JobID        string `json:"job_id,omitempty"`
+		ErrorCode    string `json:"error_code,omitempty"`
+		ErrorMsg     string `json:"error_msg,omitempty"`
 		AppVersionID string `json:"app_version_id,omitempty"`
 		PhoneID      string `json:"phone_id,omitempty"`
 	} `json:"jobs"`
@@ -23,7 +25,7 @@ func (c *CPHClient) DeployAppVersionToServer(appVersionIDS, serverIDS []string) 
 	body := map[string]interface{}{
 		"batch_deploy_app_version": map[string]interface{}{
 			"app_version_ids": appVersionIDS,
-			"server_ids": serverIDS,
+			"server_ids":      serverIDS,
 		},
 	}
 

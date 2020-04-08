@@ -9,7 +9,9 @@ type RemoveAppVersionFromServerResponse struct {
 	RequestID string `json:"request_id"`
 	Jobs      []struct {
 		JobType      int    `json:"job_type"`
-		JobID        string `json:"job_id"`
+		JobID        string `json:"job_id,omitempty"`
+		ErrorCode    string `json:"error_code,omitempty"`
+		ErrorMsg     string `json:"error_msg,omitempty"`
 		ServerID     string `json:"server_id"`
 		AppVersionID string `json:"app_version_id"`
 	} `json:"jobs"`
@@ -22,7 +24,7 @@ func (c *CPHClient) RemoveAppVersionFromServer(appVersionIDS, serverIDS []string
 	body := map[string]interface{}{
 		"batch_remove_app_version": map[string]interface{}{
 			"app_version_ids": appVersionIDS,
-			"server_ids": serverIDS,
+			"server_ids":      serverIDS,
 		},
 	}
 
@@ -42,4 +44,3 @@ func (c *CPHClient) RemoveAppVersionFromServer(appVersionIDS, serverIDS []string
 	}
 	return &res, nil
 }
-

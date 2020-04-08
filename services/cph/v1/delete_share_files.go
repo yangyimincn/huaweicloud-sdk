@@ -8,8 +8,10 @@ import (
 type DeleteShareFilesResponse struct {
 	RequestID string `json:"request_id"`
 	Jobs      []struct {
-		ServerID string `json:"server_id"`
-		JobID    string `json:"job_id"`
+		ServerID  string `json:"server_id"`
+		JobID     string `json:"job_id,omitempty"`
+		ErrorCode string `json:"error_code,omitempty"`
+		ErrorMsg  string `json:"error_msg,omitempty"`
 	} `json:"jobs"`
 }
 

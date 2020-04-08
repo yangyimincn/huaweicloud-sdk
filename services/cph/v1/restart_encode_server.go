@@ -7,13 +7,15 @@ import (
 
 type RestartEncodeServerResponse struct {
 	Jobs []struct {
-		JobID          string `json:"job_id"`
+		JobID          string `json:"job_id,omitempty"`
+		ErrorCode      string `json:"error_code,omitempty"`
+		ErrorMsg       string `json:"error_msg,omitempty"`
 		EncodeServerID string `json:"encode_server_id"`
 	} `json:"jobs"`
 	RequestID string `json:"request_id"`
 }
 
-func (c *CPHClient) RestartEncodeServer(encodeServerIDS []string) (*RestartEncodeServerResponse, error)  {
+func (c *CPHClient) RestartEncodeServer(encodeServerIDS []string) (*RestartEncodeServerResponse, error) {
 	uri := fmt.Sprintf("/v1/%s/cloud-phone/encode-servers/batch-restart", c.GetProjectID())
 	res := RestartEncodeServerResponse{}
 
