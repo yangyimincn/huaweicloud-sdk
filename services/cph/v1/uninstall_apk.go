@@ -8,11 +8,12 @@ import (
 type UninstallApkResponse struct {
 	RequestID string `json:"request_id"`
 	Jobs      []struct {
-		PhoneID string `json:"phone_id"`
-		JobID   string `json:"job_id"`
+		PhoneID   string `json:"phone_id"`
+		JobID     string `json:"job_id,omitempty"`
+		ErrorCode string `json:"error_code,omitempty"`
+		ErrorMsg  string `json:"error_msg,omitempty"`
 	} `json:"jobs"`
 }
-
 
 func (c *CPHClient) UninstallApk(content string, phoneIDS, serverIDS []string) (*UninstallApkResponse, error) {
 	uri := fmt.Sprintf("/v1/%s/cloud-phone/phones/commands", c.GetProjectID())

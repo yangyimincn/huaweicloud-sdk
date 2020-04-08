@@ -9,7 +9,9 @@ type UpdateAppVersionOfPhoneResponse struct {
 	RequestID string `json:"request_id"`
 	Jobs      []struct {
 		JobType      int    `json:"job_type"`
-		JobID        string `json:"job_id"`
+		JobID        string `json:"job_id,omitempty"`
+		ErrorCode    string `json:"error_code,omitempty"`
+		ErrorMsg     string `json:"error_msg,omitempty"`
 		PhoneID      string `json:"phone_id"`
 		AppVersionID string `json:"app_version_id"`
 	} `json:"jobs"`
