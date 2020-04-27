@@ -12,7 +12,7 @@ type QueryAppDetailResponse struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
 	AppVersions []struct {
-		AppVerisonID   string    `json:"app_verison_id"`
+		AppVerisonID   string    `json:"app_version_id"`
 		VersionCode    string    `json:"version_code"`
 		VersionName    string    `json:"version_name"`
 		BucketName     string    `json:"bucket_name"`
