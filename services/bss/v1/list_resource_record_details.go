@@ -13,17 +13,17 @@ type ListResourceRecordDetails struct {
 		ResInstanceID             string      `json:"res_instance_id"`
 		ResourceName              string      `json:"resource_name"`
 		ResourceTag               interface{} `json:"resource_tag"`
-		ConsumeAmount             int         `json:"consume_amount"`
-		CashAmount                int         `json:"cash_amount"`
-		CreditAmount              int         `json:"credit_amount"`
-		CouponAmount              int         `json:"coupon_amount"`
-		FlexipurchaseCouponAmount int         `json:"flexipurchase_coupon_amount"`
-		StoredCardAmount          int         `json:"stored_card_amount"`
-		BonusAmount               int         `json:"bonus_amount"`
-		DebtAmount                int         `json:"debt_amount"`
+		ConsumeAmount             float64     `json:"consume_amount"`
+		CashAmount                float64     `json:"cash_amount"`
+		CreditAmount              float64     `json:"credit_amount"`
+		CouponAmount              float64     `json:"coupon_amount"`
+		FlexipurchaseCouponAmount float64     `json:"flexipurchase_coupon_amount"`
+		StoredCardAmount          float64     `json:"stored_card_amount"`
+		BonusAmount               float64     `json:"bonus_amount"`
+		DebtAmount                float64     `json:"debt_amount"`
 		AdjustmentAmount          interface{} `json:"adjustment_amount"`
-		OfficialAmount            int         `json:"official_amount"`
-		DiscountAmount            int         `json:"discount_amount"`
+		OfficialAmount            float64     `json:"official_amount"`
+		DiscountAmount            float64     `json:"discount_amount"`
 		MeasureID                 int         `json:"measure_id"`
 		EnterpriseProjectID       interface{} `json:"enterprise_project_id"`
 		EnterpriseProjectName     string      `json:"enterprise_project_name"`
@@ -36,10 +36,10 @@ type ListResourceRecordDetails struct {
 
 func (c *BSSClient) ListResourceRecordDetails(cycle string, offset, limit int) (*ListResourceRecordDetails, error) {
 	body := map[string]interface{}{
-		"cycle": cycle,
+		"cycle":               cycle,
 		"include_zero_record": "false",
-		"offset": offset,
-		"limit": limit,
+		"offset":              offset,
+		"limit":               limit,
 	}
 	uri := "/v2/bills/customer-bills/res-records/query"
 	res := ListResourceRecordDetails{}
